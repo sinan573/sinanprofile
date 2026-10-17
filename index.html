@@ -3,80 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinan Miraj | AI Developer Portfolio</title>
+    <title>Sinan Miraj | Full-Stack & AI Engineer</title>
     <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-hover: #0284c7;
-            --border-color: #334155;
+            --bg-primary: #090d16;
+            --bg-secondary: #111827;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-cyan: #06b6d4;
+            --accent-blue: #3b82f6;
+            --accent-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --badge-bg: rgba(6, 182, 212, 0.1);
+            --badge-border: rgba(6, 182, 212, 0.25);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --shadow-glow: 0 0 35px rgba(6, 182, 212, 0.15);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* Header / Profile Section */
-        header {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: var(--text-color);
-            margin-bottom: 8px;
-        }
-
-        header .subtitle {
-            font-size: 1.25rem;
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        header .location {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-        }
-
-        header .location i {
-            color: var(--accent-color);
-            margin-right: 6px;
-        }
-
-        .contact-links {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.08) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 950px;
+        }
+
+        /* Hero Header Component */
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: center;
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+
+        .profile-info h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .profile-location {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background-color: #10b981;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #10b981;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -84,138 +141,336 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
-            background-color: var(--accent-color);
-            color: #0f172a;
-            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        .btn:hover {
-            background-color: var(--accent-hover);
+        .btn-primary {
+            background: var(--accent-gradient);
             color: #ffffff;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--border-color);
-            color: var(--text-color);
-        }
-
-        /* Section Cards */
-        section {
+        /* Navigation Bar (Tabs) */
+        .tabs-nav {
+            display: flex;
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            padding: 6px;
+            gap: 6px;
             margin-bottom: 24px;
         }
 
-        section h2 {
-            font-size: 1.5rem;
-            color: var(--accent-color);
+        .tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tab-btn i {
+            font-size: 1rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid var(--badge-border);
+        }
+
+        /* Tab Content Container */
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            color: var(--text-primary);
         }
 
-        /* Skills Grid */
-        .skills-grid {
+        .section-title i {
+            color: var(--accent-cyan);
+        }
+
+        /* Overview Tab Layout */
+        .bio-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
         }
 
-        .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 500;
-            color: var(--text-color);
+        .metric-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: var(--radius-md);
         }
 
-        /* Timeline Items (Education & Experience) */
-        .timeline-item {
-            margin-bottom: 20px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        .timeline-meta {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+        .metric-card h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
             margin-bottom: 8px;
         }
 
-        /* Project Grid */
+        .metric-card p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* Tech Stack & Skills Layout */
+        .skills-category {
+            margin-bottom: 24px;
+        }
+
+        .skills-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tag i {
+            color: var(--accent-cyan);
+        }
+
+        .tag:hover {
+            border-color: var(--accent-cyan);
+            background: var(--badge-bg);
+        }
+
+        /* Projects Layout */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
         }
 
         .project-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all 0.3s ease;
         }
 
-        .project-card h3 {
+        .project-card:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .project-header h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .project-header i {
+            color: var(--accent-cyan);
             font-size: 1.2rem;
-            color: var(--text-color);
-            margin-bottom: 8px;
         }
 
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
             margin-bottom: 16px;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .project-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
         }
 
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            header {
-                padding: 25px 15px;
+        /* Timeline Layout (Education/Experience) */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--card-border);
+        }
+
+        .timeline-node {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .timeline-node:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-node::before {
+            content: '';
+            position: absolute;
+            left: -25px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .node-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .node-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 4px 0 8px 0;
+        }
+
+        .node-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Footer Component */
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                padding: 24px;
             }
 
-            header h1 {
-                font-size: 2rem;
+            .tabs-nav {
+                flex-direction: column;
             }
 
-            section {
+            .tab-btn {
+                justify-content: flex-start;
+            }
+
+            .tab-content {
                 padding: 20px;
             }
         }
@@ -223,81 +478,192 @@
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header / Profile Section -->
-        <header>
-            <h1>Sinan Miraj</h1>
-            <div class="subtitle">AI Developer</div>
-            <div class="location">
-                <i class="fa-solid fa-location-dot"></i> Kohat, Khyber Pakhtunkhwa, Pakistan
-            </div>
-            <div class="contact-links">
-                <a href="mailto:sinanmiraj83@gmail.com" class="btn">
-                    <i class="fa-solid fa-envelope"></i> Email Me
-                </a>
-                <a href="https://github.com/" target="_blank" class="btn btn-outline">
-                    <i class="fa-brands fa-github"></i> GitHub Profile
-                </a>
+    <div class="wrapper">
+        <!-- Main Profile Header -->
+        <header class="profile-card">
+            <div class="profile-info">
+                <h1>Sinan Miraj</h1>
+                <div class="profile-title">
+                    <i class="fa-solid fa-code-branch"></i> AI & Full-Stack Developer
+                    <span class="status-badge"><span class="status-dot"></span> Available for projects</span>
+                </div>
+                <div class="profile-location">
+                    <i class="fa-solid fa-location-dot"></i> Kohat, Khyber Pakhtunkhwa, Pakistan
+                </div>
+                <div class="action-buttons">
+                    <a href="mailto:sinanmiraj83@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-envelope"></i> Contact Me
+                    </a>
+                    <a href="https://github.com/" target="_blank" class="btn btn-secondary">
+                        <i class="fa-brands fa-github"></i> GitHub
+                    </a>
+                </div>
             </div>
         </header>
 
-        <!-- About Me Section -->
-        <section id="about">
-            <h2><i class="fa-solid fa-user"></i> About Me</h2>
-            <p>
-                Passionate and self-driven AI Developer dedicated to building intelligent solutions, automated workflows, and practical machine learning applications. Focused on leveraging artificial intelligence to solve real-world challenges and continuously expanding expertise in modern AI technologies.
-            </p>
-        </section>
+        <!-- Navigation Tabs -->
+        <nav class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('overview')">
+                <i class="fa-solid fa-user"></i> Overview
+            </button>
+            <button class="tab-btn" onclick="switchTab('tech-stack')">
+                <i class="fa-solid fa-layer-group"></i> Tech Stack
+            </button>
+            <button class="tab-btn" onclick="switchTab('projects')">
+                <i class="fa-solid fa-laptop-code"></i> Projects
+            </button>
+            <button class="tab-btn" onclick="switchTab('education')">
+                <i class="fa-solid fa-graduation-cap"></i> Education
+            </button>
+        </nav>
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2><i class="fa-solid fa-code"></i> Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-card">Python</div>
-                <div class="skill-card">Machine Learning</div>
-                <div class="skill-card">Deep Learning</div>
-                <div class="skill-card">Natural Language Processing</div>
-                <div class="skill-card">Prompt Engineering</div>
-                <div class="skill-card">HTML5 / CSS3</div>
-                <div class="skill-card">Git & GitHub</div>
-                <div class="skill-card">Problem Solving</div>
+        <!-- Tab 1: Overview -->
+        <div id="overview" class="tab-content active">
+            <div class="section-title">
+                <i class="fa-solid fa-terminal"></i> About Profile
             </div>
-        </section>
+            <p class="bio-text">
+                Self-driven and results-oriented AI & Full-Stack Developer based in Kohat, Pakistan. Passionate about designing intelligent automation solutions, training machine learning models, and building modern web applications. Focused on engineering practical tools that bridge core web capabilities with generative AI technology.
+            </p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h4>Primary Specialization</h4>
+                    <p>AI & Machine Learning</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Core Language</h4>
+                    <p>Python & JavaScript</p>
+                </div>
+                <div class="metric-card">
+                    <h4>Location</h4>
+                    <p>Kohat, KP, PK</p>
+                </div>
+            </div>
+        </div>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2><i class="fa-solid fa-rocket"></i> Featured Projects</h2>
+        <!-- Tab 2: Tech Stack -->
+        <div id="tech-stack" class="tab-content">
+            <div class="section-title">
+                <i class="fa-solid fa-microchip"></i> Technical Capabilities
+            </div>
+
+            <div class="skills-category">
+                <div class="category-name">AI & Data Engineering</div>
+                <div class="tag-cloud">
+                    <div class="tag"><i class="fa-brands fa-python"></i> Python</div>
+                    <div class="tag"><i class="fa-solid fa-brain"></i> Machine Learning</div>
+                    <div class="tag"><i class="fa-solid fa-network-wired"></i> Deep Learning</div>
+                    <div class="tag"><i class="fa-solid fa-comments"></i> NLP & LLM Integration</div>
+                    <div class="tag"><i class="fa-solid fa-sliders"></i> Prompt Engineering</div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <div class="category-name">Full-Stack Development</div>
+                <div class="tag-cloud">
+                    <div class="tag"><i class="fa-brands fa-html5"></i> HTML5 & CSS3</div>
+                    <div class="tag"><i class="fa-brands fa-js"></i> JavaScript (ES6+)</div>
+                    <div class="tag"><i class="fa-solid fa-server"></i> REST APIs</div>
+                    <div class="tag"><i class="fa-brands fa-git-alt"></i> Git & GitHub</div>
+                    <div class="tag"><i class="fa-solid fa-globe"></i> Web Hosting / GitHub Pages</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Projects -->
+        <div id="projects" class="tab-content">
+            <div class="section-title">
+                <i class="fa-solid fa-folder-open"></i> Portfolio Projects
+            </div>
+
             <div class="projects-grid">
                 <div class="project-card">
                     <div>
-                        <h3>AI Chatbot Integration</h3>
-                        <p>Developed a custom conversational AI agent using language model APIs and Python for automated user interactions.</p>
+                        <div class="project-header">
+                            <h3>Conversational AI Assistant</h3>
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <p class="project-desc">
+                            Designed and deployed an intelligent conversational chatbot capable of context processing, prompt tuning, and real-time response generation.
+                        </p>
                     </div>
+                    <div class="project-tags">#python #llm #api-integration</div>
                 </div>
+
                 <div class="project-card">
                     <div>
-                        <h3>Data Analysis & ML Model</h3>
-                        <p>Built a predictive machine learning model analyzing datasets to derive actionable insights and classifications.</p>
+                        <div class="project-header">
+                            <h3>Predictive Data Classifier</h3>
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <p class="project-desc">
+                            Built a supervised machine learning script trained on structured datasets to predict trends and automate classification tasks.
+                        </p>
+                    </div>
+                    <div class="project-tags">#machine-learning #pandas #scikit-learn</div>
+                </div>
+
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <h3>Developer Portfolio Platform</h3>
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <p class="project-desc">
+                            Engineered a glassmorphic static portfolio application optimized for high visual fidelity and cross-platform mobile responsiveness.
+                        </p>
+                    </div>
+                    <div class="project-tags">#html5 #css3 #github-pages</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Education -->
+        <div id="education" class="tab-content">
+            <div class="section-title">
+                <i class="fa-solid fa-user-graduate"></i> Academic Background
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-node">
+                    <div class="node-title">Matriculation in Science</div>
+                    <div class="node-meta">Secondary Education Board — Kohat, KP, Pakistan</div>
+                    <div class="node-desc">
+                        Completed core science coursework with a strong foundational focus on Mathematics, Computer Studies, and analytical logic.
+                    </div>
+                </div>
+                <div class="timeline-node">
+                    <div class="node-title">Self-Directed Software Engineering & AI Studies</div>
+                    <div class="node-meta">Online Specializations & Practical Projects</div>
+                    <div class="node-desc">
+                        Hands-on mastery of full-stack engineering principles, data structures, model fine-tuning, and modern web application deployment.
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Education Section -->
-        <section id="education">
-            <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
-            <div class="timeline-item">
-                <div class="timeline-title">Matriculation (Secondary School Certificate)</div>
-                <div class="timeline-meta">Kohat, KP, Pakistan</div>
-                <p>Focused on Science subjects, mathematics, and computer fundamentals.</p>
-            </div>
-        </section>
+        </div>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2026 Sinan Miraj. Built for GitHub Pages.</p>
+            <p>&copy; 2026 Sinan Miraj. Hosted with GitHub Pages.</p>
         </footer>
     </div>
 
+    <!-- JavaScript Tab Controller -->
+    <script>
+        function switchTab(tabId) {
+            // Remove 'active' class from all tab content panes
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Remove 'active' class from all tab navigation buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => button.classList.remove('active'));
+
+            // Set target content and button to 'active'
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>
