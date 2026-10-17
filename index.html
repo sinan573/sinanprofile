@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinan Miraj | AI Developer Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --accent-hover: #0284c7;
+            --border-color: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header / Profile Section */
+        header {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        header .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        header .location {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        header .location i {
+            color: var(--accent-color);
+            margin-right: 6px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+
+        /* Section Cards */
+        section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        /* Timeline Items (Education & Experience) */
+        .timeline-item {
+            margin-bottom: 20px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .timeline-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header {
+                padding: 25px 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header / Profile Section -->
+        <header>
+            <h1>Sinan Miraj</h1>
+            <div class="subtitle">AI Developer</div>
+            <div class="location">
+                <i class="fa-solid fa-location-dot"></i> Kohat, Khyber Pakhtunkhwa, Pakistan
+            </div>
+            <div class="contact-links">
+                <a href="mailto:sinanmiraj83@gmail.com" class="btn">
+                    <i class="fa-solid fa-envelope"></i> Email Me
+                </a>
+                <a href="https://github.com/" target="_blank" class="btn btn-outline">
+                    <i class="fa-brands fa-github"></i> GitHub Profile
+                </a>
+            </div>
+        </header>
+
+        <!-- About Me Section -->
+        <section id="about">
+            <h2><i class="fa-solid fa-user"></i> About Me</h2>
+            <p>
+                Passionate and self-driven AI Developer dedicated to building intelligent solutions, automated workflows, and practical machine learning applications. Focused on leveraging artificial intelligence to solve real-world challenges and continuously expanding expertise in modern AI technologies.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2><i class="fa-solid fa-code"></i> Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card">Python</div>
+                <div class="skill-card">Machine Learning</div>
+                <div class="skill-card">Deep Learning</div>
+                <div class="skill-card">Natural Language Processing</div>
+                <div class="skill-card">Prompt Engineering</div>
+                <div class="skill-card">HTML5 / CSS3</div>
+                <div class="skill-card">Git & GitHub</div>
+                <div class="skill-card">Problem Solving</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2><i class="fa-solid fa-rocket"></i> Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div>
+                        <h3>AI Chatbot Integration</h3>
+                        <p>Developed a custom conversational AI agent using language model APIs and Python for automated user interactions.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div>
+                        <h3>Data Analysis & ML Model</h3>
+                        <p>Built a predictive machine learning model analyzing datasets to derive actionable insights and classifications.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            <div class="timeline-item">
+                <div class="timeline-title">Matriculation (Secondary School Certificate)</div>
+                <div class="timeline-meta">Kohat, KP, Pakistan</div>
+                <p>Focused on Science subjects, mathematics, and computer fundamentals.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Sinan Miraj. Built for GitHub Pages.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
