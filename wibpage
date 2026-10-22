@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApexMotors | Supercar Vault</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #080a12;
+            --card-bg: rgba(18, 24, 38, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-red: #ff2e63;
+            --accent-cyan: #08d9d6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --grad-accent: linear-gradient(135deg, #ff2e63 0%, #ff8e53 100%);
+            --radius-xl: 20px;
+            --radius-md: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 30px 15px;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(255, 46, 99, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(8, 217, 214, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffffff, #ff2e63);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Controls / Search Bar */
+        .controls {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-red);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 45px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 12px rgba(255, 46, 99, 0.25);
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            outline: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        /* Grid Layout */
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .car-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .car-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 46, 99, 0.4);
+            box-shadow: 0 15px 35px rgba(255, 46, 99, 0.15);
+        }
+
+        .car-img-wrap {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .car-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car-card:hover .car-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .brand-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(8, 10, 18, 0.85);
+            border: 1px solid var(--card-border);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        .car-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .car-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .car-price {
+            color: var(--accent-red);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid var(--card-border);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+
+        .spec-item {
+            font-size: 0.85rem;
+        }
+
+        .spec-label {
+            color: var(--text-muted);
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .spec-val {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .btn-details {
+            width: 100%;
+            padding: 10px;
+            background: var(--grad-accent);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            margin-top: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-details:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1><i class="fa-solid fa-gauge-high"></i> APEX MOTORS</h1>
+            <p>Supercar Vault — Search Flagship Models across Top Manufacturers</p>
+        </header>
+
+        <!-- Search & Brand Filter -->
+        <div class="controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" onkeyup="filterCars()" placeholder="Search supercar by model, engine, or specs...">
+            </div>
+            <select id="brandFilter" class="filter-select" onchange="filterCars()">
+                <option value="ALL">All Brands</option>
+                <option value="Bugatti">Bugatti</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Porsche">Porsche</option>
+                <option value="McLaren">McLaren</option>
+                <option value="Aston Martin">Aston Martin</option>
+            </select>
+        </div>
+
+        <!-- Supercar List -->
+        <div class="cars-grid" id="carsGrid"></div>
+
+        <footer>
+            <p>&copy; 2026 Sinan Miraj. Created for GitHub Pages Deployment.</p>
+        </footer>
+    </div>
+
+    <script>
+        const supercars = [
+            // BUGATTI
+            {
+                brand: "Bugatti",
+                name: "Bugatti Chiron Super Sport",
+                price: "$3,900,000",
+                hp: "1,578 HP",
+                speed: "273 mph (440 km/h)",
+                engine: "8.0L Quad-Turbo W16",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                brand: "Bugatti",
+                name: "Bugatti Veyron 16.4",
+                price: "$1,900,000",
+                hp: "987 HP",
+                speed: "253 mph (407 km/h)",
+                engine: "8.0L Quad-Turbo W16",
+                img: "https://images.unsplash.com/photo-1600712242805-5f78671b24da?auto=format&fit=crop&w=800&q=80"
+            },
+
+            // FERRARI
+            {
+                brand: "Ferrari",
+                name: "LaFerrari Aperta",
+                price: "$2,200,000",
+                hp: "950 HP",
+                speed: "217 mph (350 km/h)",
+                engine: "6.3L V12 Hybrid",
+                img: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                brand: "Ferrari",
+                name: "Ferrari SF90 Stradale",
+                price: "$524,000",
+                hp: "986 HP",
+                speed: "211 mph (340 km/h)",
+                engine: "4.0L Twin-Turbo V8 Hybrid",
+                img: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800&q=80"
+            },
+
+            // LAMBORGHINI
+            {
+                brand: "Lamborghini",
+                name: "Lamborghini Aventador SVJ",
+                price: "$517,700",
+                hp: "759 HP",
+                speed: "217 mph (350 km/h)",
+                engine: "6.5L NA V12",
+                img: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                brand: "Lamborghini",
+                name: "Lamborghini Huracán STO",
+                price: "$330,000",
+                hp: "631 HP",
+                speed: "192 mph (310 km/h)",
+                engine: "5.2L NA V10",
+                img: "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80"
+            },
+
+            // PORSCHE
+            {
+                brand: "Porsche",
+                name: "Porsche 911 GT3 RS",
+                price: "$241,300",
+                hp: "518 HP",
+                speed: "184 mph (296 km/h)",
+                engine: "4.0L Flat-6",
+                img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                brand: "Porsche",
+                name: "Porsche 918 Spyder",
+                price: "$845,000",
+                hp: "887 HP",
+                speed: "214 mph (345 km/h)",
+                engine: "4.6L V8 Hybrid",
+                img: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"
+            },
+
+            // MCLAREN
+            {
+                brand: "McLaren",
+                name: "McLaren Speedtail",
+                price: "$2,250,000",
+                hp: "1,035 HP",
+                speed: "250 mph (402 km/h)",
+                engine: "4.0L Twin-Turbo V8 Hybrid",
+                img: "https://images.unsplash.com/photo-1621135802920-133df287f89c?auto=format&fit=crop&w=800&q=80"
+            },
+
+            // ASTON MARTIN
+            {
+                brand: "Aston Martin",
+                name: "Aston Martin Valkyrie",
+                price: "$3,500,000",
+                hp: "1,139 HP",
+                speed: "220 mph (354 km/h)",
+                engine: "6.5L V12 Hybrid",
+                img: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        function renderCars(carList) {
+            const grid = document.getElementById('carsGrid');
+            grid.innerHTML = '';
+
+            if (carList.length === 0) {
+                grid.innerHTML = `<div class="no-results"><i class="fa-solid fa-car-side"></i><br>No supercars matched your search query.</div>`;
+                return;
+            }
+
+            carList.forEach(car => {
+                const card = `
+                    <div class="car-card">
+                        <div class="car-img-wrap">
+                            <img src="${car.img}" alt="${car.name}">
+                            <span class="brand-badge">${car.brand}</span>
+                        </div>
+                        <div class="car-content">
+                            <h3 class="car-title">${car.name}</h3>
+                            <div class="car-price">${car.price}</div>
+                            <div class="specs-grid">
+                                <div class="spec-item">
+                                    <span class="spec-label">Horsepower</span>
+                                    <span class="spec-val">${car.hp}</span>
+                                </div>
+                                <div class="spec-item">
+                                    <span class="spec-label">Top Speed</span>
+                                    <span class="spec-val">${car.speed}</span>
+                                </div>
+                                <div class="spec-item" style="grid-column: span 2;">
+                                    <span class="spec-label">Engine Spec</span>
+                                    <span class="spec-val">${car.engine}</span>
+                                </div>
+                            </div>
+                            <button class="btn-details" onclick="alert('Telemetry data for ${car.name}')">View Telemetry</button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterCars() {
+            const searchText = document.getElementById('searchInput').value.toLowerCase();
+            const selectedBrand = document.getElementById('brandFilter').value;
+
+            const filtered = supercars.filter(car => {
+                const matchesSearch = car.name.toLowerCase().includes(searchText) || 
+                                      car.engine.toLowerCase().includes(searchText) ||
+                                      car.brand.toLowerCase().includes(searchText);
+                const matchesBrand = selectedBrand === 'ALL' || car.brand === selectedBrand;
+                return matchesSearch && matchesBrand;
+            });
+
+            renderCars(filtered);
+        }
+
+        renderCars(supercars);
+    </script>
+</body>
+</html>
