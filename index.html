@@ -6,34 +6,23 @@
   <title>Sinan | Portfolio & Digital CV</title>
   <style>
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --card-border: #30363d;
-      --text-main: #f0f6fc;
-      --text-sub: #8b949e;
-      --primary: #8a2be2;
-      --primary-hover: #9932cc;
-      --cyan: #00f2fe;
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
-      --hero-gradient: linear-gradient(135deg, #8a2be2 0%, #00f2fe 100%);
-      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    [data-theme="light"] {
-      --bg: #f8fafc;
+      --bg: #f4f8ff;
       --card-bg: #ffffff;
       --card-border: #e2e8f0;
-      --text-main: #0f172a;
-      --text-sub: #475569;
-      --primary: #7c3aed;
-      --primary-hover: #6d28d9;
+      --text-main: #1e293b;
+      --text-sub: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
       --cyan: #0284c7;
       --emerald: #059669;
       --amber: #d97706;
-      --accent-gradient: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-      --hero-gradient: linear-gradient(135deg, #7c3aed 0%, #0284c7 100%);
+      --pink: #ec4899;
+      --gradient-hero: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      --gradient-accent: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%);
+      --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 25px -5px rgba(79, 70, 229, 0.1), 0 8px 10px -6px rgba(79, 70, 229, 0.05);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     * {
@@ -47,15 +36,18 @@
       background-color: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
-      transition: background-color 0.2s, color 0.2s;
+      padding-bottom: 2rem;
     }
 
+    /* HEADER & NAVIGATION */
     header {
       position: sticky;
       top: 0;
-      background-color: var(--card-bg);
-      border-bottom: 1px solid var(--card-border);
-      z-index: 100;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid #e0e7ff;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
     }
 
     .nav-container {
@@ -69,233 +61,286 @@
 
     .logo {
       font-weight: 800;
-      font-size: 1.3rem;
-      background: var(--hero-gradient);
+      font-size: 1.4rem;
+      background: var(--gradient-hero);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
     }
 
-    .nav-links {
+    .profile-badge-nav {
       display: flex;
-      gap: 1.2rem;
       align-items: center;
-      list-style: none;
+      gap: 0.75rem;
+      background: #e0e7ff;
+      padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+      border-radius: 30px;
+      border: 1px solid #c7d2fe;
     }
 
-    .nav-links a {
-      color: var(--text-sub);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+    .profile-badge-nav img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--primary);
     }
 
-    .nav-links a:hover {
+    .profile-badge-nav span {
+      font-weight: 700;
+      font-size: 0.88rem;
       color: var(--primary);
-    }
-
-    .btn-toggle {
-      background: transparent;
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 0.4rem 0.8rem;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    .btn-toggle:hover {
-      border-color: var(--primary);
     }
 
     main {
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+      margin: 1.5rem auto;
+      padding: 0 1.5rem;
     }
 
-    section {
-      margin-bottom: 3.5rem;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem;
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+    /* HERO SECTION */
+    .hero-card {
+      background: #ffffff;
+      border: 2px solid #e0e7ff;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 2rem;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
+    .hero-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--hero-gradient);
+      height: 6px;
+      background: var(--gradient-hero);
     }
 
-    .hero h1 {
-      font-size: 2.5rem;
+    .hero-img-wrapper {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hero-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffff;
+      box-shadow: 0 0 0 4px #818cf8, 0 10px 20px rgba(79, 70, 229, 0.2);
+    }
+
+    .hero-content h1 {
+      font-size: 2.2rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
+      color: #0f172a;
+      margin-bottom: 0.3rem;
     }
 
-    .gradient-text {
-      background: var(--hero-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-tagline {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.8rem;
     }
 
-    .hero p {
-      font-size: 1.15rem;
+    .hero-desc {
       color: var(--text-sub);
-      max-width: 650px;
-      margin: 0 auto 1.5rem auto;
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+      max-width: 600px;
     }
 
     .btn-group {
       display: flex;
-      justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.65rem 1.4rem;
-      border-radius: 8px;
-      font-weight: 600;
+      padding: 0.65rem 1.3rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
       text-decoration: none;
-      font-size: 0.95rem;
       cursor: pointer;
       border: none;
-      transition: transform 0.15s, opacity 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      opacity: 0.95;
     }
 
     .btn-primary {
-      background: var(--hero-gradient);
-      color: #fff;
+      background: var(--gradient-hero);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
     }
 
     .btn-secondary {
-      background-color: transparent;
+      background: #f1f5f9;
       color: var(--text-main);
       border: 1px solid var(--card-border);
     }
 
-    .section-title {
-      font-size: 1.6rem;
+    /* TAB NAVIGATION */
+    .tab-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
       margin-bottom: 1.5rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .tab-btn {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      color: var(--text-sub);
+      padding: 0.6rem 1.2rem;
+      border-radius: 12px 12px 0 0;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: #e0e7ff;
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 -2px 10px rgba(79, 70, 229, 0.2);
+    }
+
+    /* TAB PANELS */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .section-title::before {
-      content: '';
-      display: inline-block;
-      width: 12px;
-      height: 24px;
-      background: var(--hero-gradient);
-      border-radius: 4px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-    }
-
-    .card-cyan { border-left: 4px solid var(--cyan); }
-    .card-violet { border-left: 4px solid var(--primary); }
-    .card-emerald { border-left: 4px solid var(--emerald); }
-    .card-amber { border-left: 4px solid var(--amber); }
-
-    .card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      color: var(--text-sub);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
+    .card-purple { border-top: 4px solid #818cf8; }
+    .card-cyan { border-top: 4px solid #06b6d4; }
+    .card-emerald { border-top: 4px solid #10b981; }
+    .card-amber { border-top: 4px solid #f59e0b; }
+    .card-pink { border-top: 4px solid #ec4899; }
 
     .badges {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
+      margin-top: 0.8rem;
     }
 
     .badge {
-      background-color: var(--bg);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 0.3rem 0.7rem;
+      border-radius: 20px;
       font-size: 0.8rem;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    .badge-cyan { border-color: var(--cyan); color: var(--cyan); }
-    .badge-violet { border-color: var(--primary); color: var(--primary); }
-    .badge-emerald { border-color: var(--emerald); color: var(--emerald); }
-    .badge-amber { border-color: var(--amber); color: var(--amber); }
+    .badge-indigo { background: #e0e7ff; color: #3730a3; border-color: #a5b4fc; }
+    .badge-cyan { background: #cffaff; color: #0e7490; border-color: #67e8f9; }
+    .badge-emerald { background: #d1fae5; color: #065f46; border-color: #6ee7b7; }
+    .badge-amber { background: #fef3c7; color: #92400e; border-color: #fde68a; }
 
+    /* PROGRESS BARS */
+    .skill-bar-container {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .progress-bg {
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .fill-indigo { background: linear-gradient(90deg, #6366f1, #4f46e5); }
+    .fill-cyan { background: linear-gradient(90deg, #06b6d4, #0891b2); }
+    .fill-emerald { background: linear-gradient(90deg, #10b981, #059669); }
+    .fill-amber { background: linear-gradient(90deg, #f59e0b, #d97706); }
+
+    /* CV PAPER STYLE */
     .cv-paper {
-      background-color: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+      background: #ffffff;
+      border: 2px solid #cbd5e1;
+      border-radius: 16px;
       padding: 2.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-lg);
     }
 
     .cv-header {
-      border-bottom: 2px solid var(--card-border);
+      border-bottom: 2px solid #e2e8f0;
       padding-bottom: 1.5rem;
       margin-bottom: 1.5rem;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
-    }
-
-    .cv-header h2 {
-      font-size: 2rem;
-      color: var(--text-main);
-    }
-
-    .cv-header p {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .cv-meta {
-      font-size: 0.9rem;
-      color: var(--text-sub);
-      text-align: right;
     }
 
     .cv-section {
@@ -305,95 +350,37 @@
     .cv-section h3 {
       font-size: 1.1rem;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--cyan);
-      margin-bottom: 0.75rem;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 0.25rem;
+      color: var(--primary);
+      border-bottom: 2px solid #e0e7ff;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
     }
 
-    .cv-item {
-      margin-bottom: 1rem;
-    }
-
-    .cv-item-header {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .cv-item-sub {
-      color: var(--text-sub);
-      font-size: 0.88rem;
-    }
-
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 2rem 1.5rem;
-      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+      border-top: 1px solid #e2e8f0;
       color: var(--text-sub);
       font-size: 0.9rem;
-      background-color: var(--card-bg);
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .footer-links a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .footer-links a:hover {
-      color: var(--primary);
     }
 
     @media print {
-      header, footer, .btn-group, .no-print {
+      header, .tab-bar, .hero-card, footer, .no-print {
         display: none !important;
       }
-
-      body {
-        background-color: #fff !important;
-        color: #000 !important;
-      }
-
-      main {
-        padding: 0 !important;
-        max-width: 100% !important;
-      }
-
-      .cv-paper {
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        background-color: transparent !important;
-      }
-
-      .cv-header h2, .cv-header p, .cv-section h3 {
-        color: #000 !important;
-      }
-
-      .badge {
-        border: 1px solid #666 !important;
-        color: #000 !important;
-      }
-
-      section:not(#cv) {
-        display: none !important;
-      }
+      body { background: #fff !important; }
+      main { padding: 0 !important; margin: 0 !important; max-width: 100% !important; }
+      .tab-panel { display: block !important; }
+      .tab-panel:not(#cv) { display: none !important; }
+      .cv-paper { border: none !important; box-shadow: none !important; padding: 0 !important; }
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.8rem; }
-      .cv-header { flex-direction: column; }
-      .cv-meta { text-align: left; }
+    @media (max-width: 768px) {
+      .hero-card { flex-direction: column; text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .btn-group { justify-content: center; }
     }
   </style>
 </head>
@@ -402,42 +389,164 @@
   <header class="no-print">
     <div class="nav-container">
       <div class="logo">SINAN</div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#cv">Digital CV</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><button class="btn-toggle" onclick="toggleTheme()">☀️ / 🌙</button></li>
-      </ul>
+      <div class="profile-badge-nav">
+        <img src="sinan.jpg" alt="Sinan Profile">
+        <span>sinan profile</span>
+      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <h1>Hi, I'm <span class="gradient-text">Sinan</span></h1>
-      <p>18-Year-Old Matriculation Graduate & Aspiring Tech Enthusiast passionate about Web Development and Problem Solving.</p>
-      <div class="btn-group">
-        <a href="#cv" class="btn btn-primary">View CV</a>
-        <button onclick="window.print()" class="btn btn-secondary">🖨️ Export CV (PDF)</button>
+    <!-- HERO SECTION -->
+    <div class="hero-card">
+      <div class="hero-img-wrapper">
+        <img src="sinan.jpg" alt="Sinan" class="hero-img">
       </div>
-    </section>
-
-    <section id="about">
-      <h2 class="section-title">About Me</h2>
-      <div class="card card-violet">
-        <p>I am an enthusiastic 18-year-old student who recently completed Matriculation with a strong focus on Science and Mathematics. Dedicated to continuous self-learning, I spend my free time exploring web technologies, practicing basic programming, and working on creative personal projects.</p>
+      <div class="hero-content">
+        <h1>Hi, I'm Sinan 👋</h1>
+        <div class="hero-tagline">18-Year-Old Matriculation Graduate & Aspiring Tech Developer</div>
+        <p class="hero-desc">Passionate about Computer Science, Web Technologies, and Modern Software Engineering. Welcome to my vibrant personal profile and interactive CV!</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="switchTab('cv')">📄 Open Digital CV</button>
+          <button class="btn btn-secondary" onclick="window.print()">🖨️ Export PDF CV</button>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <section id="cv">
-      <h2 class="section-title">Digital Curriculum Vitae</h2>
+    <!-- TAB NAVIGATION -->
+    <div class="tab-bar no-print">
+      <button class="tab-btn active" onclick="openTab(event, 'about')">👤 About Me</button>
+      <button class="tab-btn" onclick="openTab(event, 'education')">📚 Education</button>
+      <button class="tab-btn" onclick="openTab(event, 'projects')">💻 Projects</button>
+      <button class="tab-btn" onclick="openTab(event, 'skills')">📊 Skills & Meters</button>
+      <button class="tab-btn" onclick="openTab(event, 'achievements')">🏆 Achievements</button>
+      <button class="tab-btn" onclick="openTab(event, 'goals')">🎯 Future Goals</button>
+      <button class="tab-btn" onclick="openTab(event, 'cv')">📜 Printable CV</button>
+      <button class="tab-btn" onclick="openTab(event, 'contact')">✉️ Contact</button>
+    </div>
+
+    <!-- TAB 1: ABOUT ME -->
+    <div id="about" class="tab-panel active">
+      <div class="grid-2">
+        <div class="card card-purple">
+          <div class="card-title">🚀 Who I Am</div>
+          <p>I am an 18-year-old matriculation student with a profound passion for technology and computer science. I focus heavily on self-learning, exploring modern web code, and understanding computer systems.</p>
+        </div>
+        <div class="card card-cyan">
+          <div class="card-title">💡 Core Interests</div>
+          <p>Front-End Web Development, Python Programming, PC Hardware Assembly, and Algorithmic Logic. I love transforming creative concepts into clean, functional digital interfaces.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: EDUCATION -->
+    <div id="education" class="tab-panel">
+      <div class="card card-emerald">
+        <div class="card-title">🎓 Academic Record</div>
+        <div style="margin-top: 1rem;">
+          <h4 style="font-size: 1.1rem; color: var(--primary);">Matriculation (Computer Science Stream)</h4>
+          <p style="color: var(--text-sub); font-weight: 600;">Secondary High School • Completed at Age 18</p>
+          <p style="margin-top: 0.5rem;">Major Subjects: Computer Science, Mathematics, Physics, Chemistry, English Literature.</p>
+          <div class="badges">
+            <span class="badge badge-emerald">Grade: A+ Distinction</span>
+            <span class="badge badge-indigo">CS Science Major</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: PROJECTS -->
+    <div id="projects" class="tab-panel">
+      <div class="grid-2">
+        <div class="card card-purple">
+          <div class="card-title">⚡ Interactive Student Management Script</div>
+          <p>A Python terminal software designed to manage student registration, record updates, and search logic cleanly stored in a file system.</p>
+          <div class="badges">
+            <span class="badge badge-indigo">Python</span>
+            <span class="badge badge-amber">Data Structures</span>
+          </div>
+        </div>
+
+        <div class="card card-pink">
+          <div class="card-title">🌐 Fast Portfolio & CV Platform</div>
+          <p>An ultra-responsive single-page portfolio website showcasing academic history, skills meters, tab navigation, and clean print CSS export.</p>
+          <div class="badges">
+            <span class="badge badge-cyan">HTML5 & CSS3</span>
+            <span class="badge badge-indigo">JavaScript UI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: SKILLS & METERS -->
+    <div id="skills" class="tab-panel">
+      <div class="grid-2">
+        <div class="card card-cyan">
+          <div class="card-title">💻 Technical Proficiency</div>
+          
+          <div class="skill-bar-container">
+            <div class="skill-info"><span>HTML5 & CSS Layouts</span><span>90%</span></div>
+            <div class="progress-bg"><div class="progress-fill fill-indigo" style="width: 90%;"></div></div>
+          </div>
+
+          <div class="skill-bar-container">
+            <div class="skill-info"><span>Python Programming</span><span>75%</span></div>
+            <div class="progress-bg"><div class="progress-fill fill-cyan" style="width: 75%;"></div></div>
+          </div>
+
+          <div class="skill-bar-container">
+            <div class="skill-info"><span>PC Hardware & Setup</span><span>85%</span></div>
+            <div class="progress-bg"><div class="progress-fill fill-emerald" style="width: 85%;"></div></div>
+          </div>
+        </div>
+
+        <div class="card card-amber">
+          <div class="card-title">🌟 Soft Skills</div>
+          <div class="badges" style="gap: 0.8rem;">
+            <span class="badge badge-amber" style="font-size: 0.9rem;">Analytical Problem Solving</span>
+            <span class="badge badge-indigo" style="font-size: 0.9rem;">Effective Communication</span>
+            <span class="badge badge-emerald" style="font-size: 0.9rem;">Team Leadership</span>
+            <span class="badge badge-cyan" style="font-size: 0.9rem;">Rapid Self-Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: ACHIEVEMENTS -->
+    <div id="achievements" class="tab-panel">
+      <div class="card card-pink">
+        <div class="card-title">🏅 Honors & Recognition</div>
+        <ul style="padding-left: 1.2rem; color: var(--text-sub); margin-top: 0.5rem; line-height: 1.8;">
+          <li><strong>First Place:</strong> School Science & IT Fair (Interactive Logic Model).</li>
+          <li><strong>Computer Club President:</strong> Led high school peer coding workshops and tech events.</li>
+          <li><strong>Certifications:</strong> Completed foundational web development online modules.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TAB 6: GOALS -->
+    <div id="goals" class="tab-panel">
+      <div class="grid-2">
+        <div class="card card-purple">
+          <div class="card-title">🎯 Short-Term Goals</div>
+          <p>Enroll in a top Bachelor of Software Engineering program and master JavaScript frameworks (React/Vue).</p>
+        </div>
+        <div class="card card-emerald">
+          <div class="card-title">🚀 Long-Term Vision</div>
+          <p>Become a Lead Full-Stack Software Engineer building scalable, user-friendly digital applications globally.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 7: PRINTABLE CV -->
+    <div id="cv" class="tab-panel">
       <div class="cv-paper">
         <div class="cv-header">
           <div>
-            <h2>SINAN</h2>
-            <p>Matriculation Student | Tech Aspirant</p>
+            <h2 style="font-size: 1.8rem; color: var(--text-main);">SINAN</h2>
+            <p style="color: var(--primary); font-weight: 700;">Matriculation Student | Tech Developer Aspirant</p>
           </div>
-          <div class="cv-meta">
+          <div style="font-size: 0.9rem; color: var(--text-sub); text-align: right;">
             <p>Age: 18</p>
             <p>Email: sinan.sample@email.com</p>
             <p>Location: City, Country</p>
@@ -445,122 +554,65 @@
         </div>
 
         <div class="cv-section">
-          <h3>Education</h3>
-          <div class="cv-item">
-            <div class="cv-item-header">
-              <span>Matriculation (Science Stream)</span>
-              <span>2022 - 2024</span>
-            </div>
-            <div class="cv-item-sub">High School Name • Grade: A+ / High Distinction</div>
-            <p class="cv-item-sub">Focus Areas: Computer Science, Mathematics, Physics, Chemistry.</p>
-          </div>
+          <h3>Education Background</h3>
+          <p><strong>Matriculation (Computer Science)</strong> — High School Name (Completed at 18)</p>
+          <p style="color: var(--text-sub); font-size: 0.9rem;">Major Subjects: CS, Math, Physics, Chemistry. Achieved High Distinction (A+).</p>
         </div>
 
         <div class="cv-section">
-          <h3>Core Competencies</h3>
-          <div class="badges">
-            <span class="badge badge-cyan">HTML5 & CSS3</span>
-            <span class="badge badge-violet">Basic Python</span>
-            <span class="badge badge-emerald">Problem Solving</span>
-            <span class="badge badge-amber">MS Office & Docs</span>
-            <span class="badge badge-cyan">Technical Troubleshooting</span>
-          </div>
+          <h3>Core Technical Skills</h3>
+          <p style="font-size: 0.95rem;">HTML5, CSS3 Flexbox/Grid, Basic Python, Systems & Hardware Troubleshooting, MS Office Suite.</p>
         </div>
 
         <div class="cv-section">
-          <h3>Key Academic Projects</h3>
-          <div class="cv-item">
-            <div class="cv-item-header">
-              <span>Student Management Script (Python)</span>
-              <span>2024</span>
-            </div>
-            <p class="cv-item-sub">Developed a lightweight CLI script to add, edit, and search student record data stored in a local file.</p>
-          </div>
-          <div class="cv-item">
-            <div class="cv-item-header">
-              <span>Personal Website & Portfolio</span>
-              <span>2024</span>
-            </div>
-            <p class="cv-item-sub">Designed and built a fast, responsive single-page portfolio with print-friendly CV export.</p>
-          </div>
-        </div>
-
-        <div class="cv-section">
-          <h3>Achievements & Extracurriculars</h3>
-          <ul style="padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-sub);">
-            <li>Participated in School Science & Technology Exhibition.</li>
-            <li>Completed foundational self-paced online courses in Web Development.</li>
-            <li>Active member of the high school Computer Club.</li>
-          </ul>
+          <h3>Projects</h3>
+          <p><strong>1. Python Student Management System:</strong> Built CLI registration software.</p>
+          <p><strong>2. Personal Interactive Portfolio:</strong> High-performance single-page tabbed web application.</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section id="projects">
-      <h2 class="section-title">Projects</h2>
-      <div class="grid-2">
-        <div class="card card-cyan">
-          <h3>Student Record Script</h3>
-          <p>A simple Python terminal application that allows users to manage and record student information efficiently.</p>
-          <div class="badges">
-            <span class="badge badge-cyan">Python</span>
-            <span class="badge badge-amber">CLI</span>
-          </div>
-        </div>
-
-        <div class="card card-emerald">
-          <h3>Interactive Science Fair Model</h3>
-          <p>Created an interactive demonstration project explaining basic circuit physics and electric conductivity.</p>
-          <div class="badges">
-            <span class="badge badge-emerald">Physics</span>
-            <span class="badge badge-violet">STEM</span>
-          </div>
+    <!-- TAB 8: CONTACT -->
+    <div id="contact" class="tab-panel">
+      <div class="card card-cyan">
+        <div class="card-title">✉️ Get in Touch</div>
+        <p>Feel free to reach out to me for academic collaborations, projects, or technical discussions!</p>
+        <div class="badges" style="margin-top: 1rem;">
+          <span class="badge badge-indigo">Email: sinan.sample@email.com</span>
+          <span class="badge badge-cyan">GitHub: github.com/sinan573</span>
+          <span class="badge badge-emerald">LinkedIn: linkedin.com/in/sinan</span>
         </div>
       </div>
-    </section>
-
-    <section id="skills">
-      <h2 class="section-title">Skills & Tools</h2>
-      <div class="grid-2">
-        <div class="card card-violet">
-          <h3>Technical Skills</h3>
-          <div class="badges">
-            <span class="badge badge-cyan">HTML & CSS</span>
-            <span class="badge badge-violet">Python Basics</span>
-            <span class="badge badge-emerald">Web Design</span>
-            <span class="badge badge-amber">Computer Hardware</span>
-          </div>
-        </div>
-        <div class="card card-amber">
-          <h3>Soft Skills & Languages</h3>
-          <div class="badges">
-            <span class="badge badge-amber">Teamwork</span>
-            <span class="badge badge-emerald">Time Management</span>
-            <span class="badge badge-cyan">English</span>
-            <span class="badge badge-violet">Urdu</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="no-print">
-    <div class="footer-links">
-      <a href="mailto:sinan.sample@email.com">Email</a>
-      <a href="#">GitHub</a>
-      <a href="#">LinkedIn</a>
-    </div>
-    <p>&copy; 2026 Sinan. Built with lightweight HTML & CSS.</p>
+    <p>© 2026 Sinan. Designed with vibrant colors & lightweight performance.</p>
   </footer>
 
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      const currentTheme = body.getAttribute('data-theme');
-      if (currentTheme === 'light') {
-        body.removeAttribute('data-theme');
-      } else {
-        body.setAttribute('data-theme', 'light');
+    function openTab(evt, tabName) {
+      const tabPanels = document.getElementsByClassName("tab-panel");
+      for (let i = 0; i < tabPanels.length; i++) {
+        tabPanels[i].classList.remove("active");
+      }
+      const tabBtns = document.getElementsByClassName("tab-btn");
+      for (let i = 0; i < tabBtns.length; i++) {
+        tabBtns[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+      if (evt) {
+        evt.currentTarget.classList.add("active");
+      }
+    }
+
+    function switchTab(tabName) {
+      const tabBtns = document.getElementsByClassName("tab-btn");
+      for (let i = 0; i < tabBtns.length; i++) {
+        if (tabBtns[i].getAttribute("onclick").includes(tabName)) {
+          tabBtns[i].click();
+          break;
+        }
       }
     }
   </script>
